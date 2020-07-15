@@ -2,12 +2,14 @@ import { WebpackClusterPlugin } from 'build/webpack/WebpackClusterPlugin';
 import { resolve } from 'path';
 import { DefinePlugin } from 'webpack';
 import { LAZY_COMPONENT_PLUGIN } from 'build/babel/lazyComponentBabelPlugin';
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import defaultConfig from 'build/configs/common.webpack.config';
+import nodeExternals from 'webpack-node-externals';
 
 export default merge(defaultConfig, {
     name: 'server',
     entry: resolve('src/server/index.ts'),
+    target: 'node',
 
     output: {
         path: resolve('dist'),
@@ -16,14 +18,7 @@ export default merge(defaultConfig, {
         libraryTarget: 'commonjs2',
     },
 
-    externals: {
-        fs: 'commonjs fs',
-        path: 'commonjs path',
-        react: 'commonjs react',
-        express: 'commonjs express',
-        'unsplash-js': 'commonjs unsplash-js',
-        'node-fetch': 'commonjs node-fetch',
-    },
+    externals: [nodeExternals()],
 
     module: {
         rules: [
