@@ -4,7 +4,7 @@ import { getPhotosState } from 'server/dataSource/photos';
 import { getPhotoState } from 'server/dataSource/photo';
 
 export function photosApi(): Handler {
-    return async function(req: Request, res: Response, next: NextFunction) {
+    return async function (req: Request, res: Response, next: NextFunction) {
         try {
             res.json(await getPhotosState());
         } catch (err) {
@@ -14,7 +14,7 @@ export function photosApi(): Handler {
 }
 
 export function photoApi(): Handler {
-    return async function(req: Request, res: Response, next: NextFunction) {
+    return async function (req: Request, res: Response, next: NextFunction) {
         try {
             res.json(await getPhotoState(req.params.id));
         } catch (err) {

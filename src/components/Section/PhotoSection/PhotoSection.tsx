@@ -16,12 +16,12 @@ const cnPhotoSection = cn('PhotoSection');
 export interface PhotoSectionProps extends RouteComponentProps<RouterParams> {}
 
 export default function PhotoSection(props: PhotoSectionProps) {
-    let [hasError, setError] = React.useState(false);
-    let photo = useSelector((state: AppState) => state.photo.photo);
-    let related = useSelector((state: AppState) => state.photo.related);
-    let dispatch = useDispatch();
-    let currentId = props.match.params.id;
-    let isValidPhoto = photo && (photo.id === currentId && currentId);
+    const [hasError, setError] = React.useState(false);
+    const photo = useSelector((state: AppState) => state.photo.photo);
+    const related = useSelector((state: AppState) => state.photo.related);
+    const dispatch = useDispatch();
+    const currentId = props.match.params.id;
+    const isValidPhoto = photo && photo.id === currentId && currentId;
 
     React.useEffect(() => {
         async function fetchData() {
@@ -29,7 +29,7 @@ export default function PhotoSection(props: PhotoSectionProps) {
         }
 
         if (!isValidPhoto) {
-            fetchData().catch(error => {
+            fetchData().catch((error) => {
                 console.error(error);
                 setError(true);
             });

@@ -15,7 +15,7 @@ export interface PhotoImageProps {
 }
 
 export const PhotoImage: React.FC<PhotoImageProps> = function PhotoImage({ photo, alt, className }: PhotoImageProps) {
-    let ratio = photo.height / photo.width;
+    const ratio = photo.height / photo.width;
 
     if (!photo.urls) {
         return null;

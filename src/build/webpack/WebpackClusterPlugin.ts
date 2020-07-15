@@ -14,13 +14,13 @@ export class WebpackClusterPlugin implements Plugin {
     public constructor(private options: WebpackClusterPluginOptions) {}
 
     private restart(path: string) {
-        let prevWorker = this.worker;
+        const prevWorker = this.worker;
 
         setupMaster({ exec: path });
 
         this.worker = fork(this.options.env);
 
-        let checkPrev = () => {
+        const checkPrev = () => {
             if (prevWorker && !prevWorker.isDead()) {
                 prevWorker.kill();
             }
@@ -28,7 +28,7 @@ export class WebpackClusterPlugin implements Plugin {
 
         this.worker.on('listening', () => checkPrev());
 
-        this.worker.on('exit', exitCode => {
+        this.worker.on('exit', (exitCode) => {
             if (exitCode) {
                 console.error(chalk.red(`Process ${this.options.filename} stopped with code ${exitCode}`));
             }
@@ -36,7 +36,7 @@ export class WebpackClusterPlugin implements Plugin {
             checkPrev();
         });
 
-        this.worker.on('error', error => {
+        this.worker.on('error', (error) => {
             console.error(chalk.red(`Error in process ${this.options.filename}: ${error}`));
             checkPrev();
         });
@@ -47,7 +47,7 @@ export class WebpackClusterPlugin implements Plugin {
             return;
         }
 
-        compiler.hooks.done.tap('WebpackClusterPlugin', stats => {
+        compiler.hooks.done.tap('WebpackClusterPlugin', (stats) => {
             return this.restart(stats.compilation.assets[this.options.filename].existsAt);
         });
     }

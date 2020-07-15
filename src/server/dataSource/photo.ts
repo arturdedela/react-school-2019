@@ -5,7 +5,7 @@ import { toJson } from 'unsplash-js';
 import { PhotoState } from 'store/photo/types';
 
 export async function getPhotoState(photoId: string): Promise<PhotoState> {
-    let [photoResponse, relatedResponse] = await Promise.all([
+    const [photoResponse, relatedResponse] = await Promise.all([
         unsplashClient.photos.getPhoto(photoId),
         // @ts-ignore
         unsplashClient.request({

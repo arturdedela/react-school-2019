@@ -20,7 +20,7 @@ history.scrollRestoration = 'manual';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Load module
-    let route = getRoute(state);
+    const route = getRoute(state);
 
     if (route && PAGES[route]) {
         await (PAGES[route].component as LazyComponentType).loader();

@@ -20,7 +20,7 @@ export interface LazyProps {
 
 export function lazyComponent({ asyncLoader, syncLoader, id }: LazyProps): LazyComponentType {
     const LazyComponent = (props: RouteComponentProps<RouterParams>) => {
-        let componentModule = syncLoader();
+        const componentModule = syncLoader();
         let Component: React.ComponentType<RouteComponentProps<RouterParams>> | undefined;
 
         // Server
@@ -29,8 +29,6 @@ export function lazyComponent({ asyncLoader, syncLoader, id }: LazyProps): LazyC
         } else {
             // Have preloaded module and make component sync
             if (require.cache[id]) {
-                // @ts-ignore
-                // eslint-disable-next-line @typescript-eslint/camelcase
                 Component = require.cache[id].exports.default;
             } else {
                 Component = React.lazy(asyncLoader);
@@ -49,7 +47,7 @@ export function lazyComponent({ asyncLoader, syncLoader, id }: LazyProps): LazyC
     return LazyComponent;
 }
 
-export function lazyComponentBabel(loader: (() => Promise<LazyModule>) | LazyProps): LazyComponentType {
+export function lazyComponentBabel(loader: () => Promise<LazyModule> | LazyProps): LazyComponentType {
     if (typeof loader === 'function') {
         throw new Error('Add lazyComponentBabelPlugin to your babel config');
     }

@@ -11,18 +11,18 @@ export default function lazyComponentBabelPlugin(): PluginObj {
                     return;
                 }
 
-                let arrow = node.arguments[0];
+                const arrow = node.arguments[0];
 
                 if (!t.isArrowFunctionExpression(arrow)) {
                     return;
                 }
-                let body = arrow.body;
+                const body = arrow.body;
 
                 if (!t.isCallExpression(body) || !t.isImport(body.callee)) {
                     return;
                 }
 
-                let options = template.expression`{
+                const options = template.expression`{
                     asyncLoader() {
                         if (typeof window === 'object') {
                             return IMPORT;

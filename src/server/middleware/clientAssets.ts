@@ -36,8 +36,8 @@ export function clientAssets(): Handler {
                 throw new Error('Cannot find assets');
             }
 
-            let getFiles = (names: string[]) => names.map(name => files && files[name]).filter(Boolean) as string[];
-            let route = getRoute(req.state.state);
+            const getFiles = (names: string[]) => names.map((name) => files && files[name]).filter(Boolean) as string[];
+            const route = getRoute(req.state.state);
 
             req.state.files = files;
             req.state.css = getFiles([DEFAULT_CSS, `page.${route}.css`]);

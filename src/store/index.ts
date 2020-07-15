@@ -7,7 +7,7 @@ import { PhotosTypes } from 'store/photos/types';
 
 export const MERGE_STATE = 'MERGE_STATE';
 
-let storeReducer = combineReducers({
+const storeReducer = combineReducers({
     router: routerReducer,
     photos: photosReducer,
     photo: photoReducer,

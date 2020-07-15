@@ -17,9 +17,9 @@ export function setPhotoLoading(loading: boolean): SetPhotoLoadingAction {
 }
 
 export function fetchPhoto(photoId: string): ThunkAction<Promise<void>, AppState, string, AppTypes> {
-    return async function(dispatch, getState) {
+    return async function (dispatch, getState) {
         try {
-            let photo = getState().photo;
+            const photo = getState().photo;
 
             if (photo && photo.photo && photo.photo.id === photoId) {
                 return;
@@ -27,8 +27,8 @@ export function fetchPhoto(photoId: string): ThunkAction<Promise<void>, AppState
 
             dispatch(setPhotoLoading(true));
 
-            let response = await fetch('/api/photo/' + photoId);
-            let data: PhotoState = await response.json();
+            const response = await fetch('/api/photo/' + photoId);
+            const data: PhotoState = await response.json();
 
             dispatch(setPhoto(data));
         } finally {

@@ -4,9 +4,9 @@ import { matchUrl } from 'server/utils/matchUrl';
 import { getData } from 'server/dataSource';
 
 export function routeApi(): Handler {
-    return async function(req: Request, res: Response, next: NextFunction) {
+    return async function (req: Request, res: Response, next: NextFunction) {
         try {
-            let router = matchUrl(req.query.url);
+            const router = matchUrl(req.query.url);
 
             if (!router) {
                 return next(new Error(`Cannot match URL`));

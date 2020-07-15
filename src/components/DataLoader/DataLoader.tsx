@@ -13,15 +13,15 @@ export const DataLoader = withRouter(function DataLoader({
     children,
     location,
 }: DataLoaderProps & RouteComponentProps<RouterParams>) {
-    let [prevLocation, setPrevLocation] = React.useState(location);
-    let [hasError, setError] = React.useState(false);
-    let dispatch = useDispatch();
+    const [prevLocation, setPrevLocation] = React.useState(location);
+    const [hasError, setError] = React.useState(false);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
         // Location, was changed. We need to load data
         if (location !== prevLocation) {
             // @ts-ignore Dispatch thinks we return ThunkAction, but promise will be returned
-            let result: Promise<void> = dispatch(fetchRoute(location.pathname));
+            const result: Promise<void> = dispatch(fetchRoute(location.pathname));
 
             result
                 .then(() => {
@@ -32,7 +32,7 @@ export const DataLoader = withRouter(function DataLoader({
                     window.scrollTo(0, 0);
                     setPrevLocation(location);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                     setError(true);
                 });

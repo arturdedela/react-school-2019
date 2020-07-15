@@ -13,21 +13,21 @@ const content = cn('HomeSection');
 
 export interface HomeSectionProps {}
 
-export default function HomeSection({  }: HomeSectionProps) {
-    let [hasError, setError] = React.useState(false);
-    let photos = useSelector((state: AppState) => state.photos);
-    let dispatch = useDispatch();
+export default function HomeSection({}: HomeSectionProps) {
+    const [hasError, setError] = React.useState(false);
+    const photos = useSelector((state: AppState) => state.photos);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
         async function fetchData() {
-            let response = await fetch('/api/photos');
-            let photos: UnsplashPhoto[] = await response.json();
+            const response = await fetch('/api/photos');
+            const photos: UnsplashPhoto[] = await response.json();
 
             dispatch(setPhotos(photos));
         }
 
         if (!photos) {
-            fetchData().catch(error => {
+            fetchData().catch((error) => {
                 console.error(error);
                 setError(true);
             });

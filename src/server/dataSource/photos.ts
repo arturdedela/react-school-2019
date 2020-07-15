@@ -5,7 +5,7 @@ import { toJson } from 'unsplash-js';
 import { PhotosState } from 'store/photos/types';
 
 export async function getPhotosState(): Promise<PhotosState> {
-    let response = await unsplashClient.photos.listPhotos();
+    const response = await unsplashClient.photos.listPhotos();
 
     return await toJson(response);
 }

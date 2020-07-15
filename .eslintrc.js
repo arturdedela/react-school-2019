@@ -5,7 +5,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
-        'prettier/react'
+        'prettier/react',
     ],
     parserOptions: {
         ecmaVersion: 2018,
@@ -14,15 +14,15 @@ module.exports = {
             jsx: true,
         },
     },
-    settings:  {
-        react:  {
-            version:  '16.8.6',
+    settings: {
+        react: {
+            version: '16.13.1',
         },
     },
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-parameter-properties': 'off'
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
 };

@@ -12,14 +12,14 @@ export interface AppProps {
 }
 
 export const App: React.FC<AppProps> = function App({ url, state: { state, js, css } }: AppProps) {
-    let store = createStore(state);
+    const store = createStore(state);
 
     return (
         <Provider store={store}>
             <StaticRouter location={url}>
                 <html lang="ru">
                     <head>
-                        {css.map(file => (
+                        {css.map((file) => (
                             <link rel="stylesheet" href={file} key={file} />
                         ))}
 
@@ -41,7 +41,7 @@ export const App: React.FC<AppProps> = function App({ url, state: { state, js, c
                             }}
                         />
 
-                        {js.map(file => (
+                        {js.map((file) => (
                             <script src={file} key={file} defer />
                         ))}
                     </body>

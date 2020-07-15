@@ -14,13 +14,13 @@ const cnApp = cn('App');
 
 export interface AppProps {}
 
-export function App({  }: AppProps) {
+export function App({}: AppProps) {
     return (
         <div className={cnApp()}>
             <Header className={cnApp('Header')} />
 
             <Switch>
-                {(Object.keys(PAGES) as Routes[]).map(route => (
+                {(Object.keys(PAGES) as Routes[]).map((route) => (
                     <Route key={route} {...PAGES[route]} />
                 ))}
             </Switch>

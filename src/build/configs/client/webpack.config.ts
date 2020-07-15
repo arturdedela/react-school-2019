@@ -4,7 +4,7 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import { DefinePlugin } from 'webpack';
 import { resolve } from 'path';
 import { LAZY_COMPONENT_PLUGIN } from 'build/babel/lazyComponentBabelPlugin';
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import defaultConfig from 'build/configs/common.webpack.config';
 
 const PUBLIC_PATH = '/assets/';
@@ -93,7 +93,7 @@ export default merge(defaultConfig, {
             fileName: '../../asset-manifest.json',
             publicPath: PUBLIC_PATH,
             generate(seed, files) {
-                let manifestFiles = files.reduce(function(manifest, file) {
+                const manifestFiles = files.reduce(function (manifest, file) {
                     if (file.name) {
                         // @ts-ignore
                         manifest[file.name] = file.path;

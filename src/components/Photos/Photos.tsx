@@ -16,7 +16,7 @@ export interface PhotosProps {
 export const Photos: React.FC<PhotosProps> = function Photos({ photos }: PhotosProps) {
     return (
         <div className={cnPhotos()}>
-            {photos.map(photo => (
+            {photos.map((photo) => (
                 <PhotoTeaser className={cnPhotos('Photo')} key={photo.id} photo={photo} />
             ))}
         </div>
